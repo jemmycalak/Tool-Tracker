@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.detailtools.DetailToolsFragment">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="jemmy.calak.tooltracking.ui.detailtools.DetailToolsViewModel" />
+
+        <variable
+            name="friendsViewModel"
+            type="jemmy.calak.tooltracking.ui.friends.FriendsViewModel" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/padding_16">
+
+        <ImageView
+            android:id="@+id/imageTools"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            app:imageUrl="@{viewModel.tools.imageUri}"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/txtTotalItem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{`Total Item: `+viewModel.tools.quantity}"
+            app:layout_constraintLeft_toRightOf="@+id/imageTools"
+            app:layout_constraintTop_toTopOf="@+id/imageTools" />
+
+        <TextView
+            android:id="@+id/txtTotalItemBorrowed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/padding_10"
+            android:text="@{`Total Borrowed: `+viewModel.tools.quantityBorrowed}"
+            app:layout_constraintLeft_toRightOf="@+id/imageTools"
+            app:layout_constraintTop_toBottomOf="@+id/txtTotalItem" />
+
+        <AutoCompleteTextView
+            android:id="@+id/lytInput"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/padding_10"
+            android:layout_marginRight="@dimen/padding_10"
+            android:hint="@string/lend_to"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@+id/lytValue"
+            app:layout_constraintTop_toBottomOf="@+id/imageTools"
+            app:listFriendAutoComplete="@{friendsViewModel.listUsers}"
+            app:valueFriends="@={viewModel.friends}" />
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/lytValue"
+            android:layout_width="90dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/padding_10"
+            android:hint="@string/value"
+            android:inputType="number"
+            app:layout_constraintBottom_toBottomOf="@+id/lytInput"
+            app:layout_constraintRight_toLeftOf="@+id/btnLend"
+            app:layout_constraintTop_toTopOf="@+id/lytInput"
+            app:setQuantity="@={viewModel.quantiry}" />
+
+        <Button
+            android:id="@+id/btnLend"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:onClick="@{()-> viewModel.lendTools(viewModel.tools)}"
+            android:text="@string/lend"
+            app:enableLend1="@{viewModel.friends}"
+            app:enableLend2="@{viewModel.quantiry}"
+            app:enableLend3="@{viewModel.tools}"
+            app:enableLend4="@{friendsViewModel.listUsers}"
+            app:layout_constraintBottom_toBottomOf="@+id/lytInput"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/lytInput" />
+
+        <TextView
+            android:id="@+id/titleLender"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/padding_16"
+            android:text="@string/borrower"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnLend" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvBorrower"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/titleLender"
+            app:listBorrower="@{viewModel.dataBorrowed}" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

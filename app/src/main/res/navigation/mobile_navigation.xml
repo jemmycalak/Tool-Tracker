@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_listTool">
+
+    <fragment
+        android:id="@+id/navigation_listTool"
+        android:name="jemmy.calak.tooltracking.ui.tools.ListToolsFragment"
+        android:label="@string/title_tools"
+        tools:layout="@layout/fragment_tools">
+        <action
+            android:id="@+id/action_navigation_home_to_detailToolsFragment"
+            app:destination="@id/detailToolsFragment">
+            <argument
+                android:name="data"
+                app:argType="jemmy.calak.tooltracking.model.Tools" />
+        </action>
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_friend"
+        android:name="jemmy.calak.tooltracking.ui.friends.FriendsFragment"
+        android:label="@string/title_user"
+        tools:layout="@layout/fragment_friends">
+        <action
+            android:id="@+id/action_friend_to_friendDetailFragment"
+            app:destination="@id/friendDetailFragment">
+
+            <argument
+                android:name="data"
+                app:argType="jemmy.calak.tooltracking.model.User" />
+        </action>
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_transaction"
+        android:name="jemmy.calak.tooltracking.ui.transaction.TransactionFragment"
+        android:label="@string/title_transaction"
+        tools:layout="@layout/fragment_transactions" />
+    <fragment
+        android:id="@+id/detailToolsFragment"
+        android:name="jemmy.calak.tooltracking.ui.detailtools.DetailToolsFragment"
+        tools:layout="@layout/detail_tools_fragment">
+
+        <argument
+            android:name="data"
+            app:argType="jemmy.calak.tooltracking.model.Tools" />
+    </fragment>
+    <fragment
+        android:id="@+id/friendDetailFragment"
+        android:name="jemmy.calak.tooltracking.ui.detailfriends.FriendDetailFragment">
+
+        <argument
+            android:name="data"
+            app:argType="jemmy.calak.tooltracking.model.User" />
+    </fragment>
+</navigation>

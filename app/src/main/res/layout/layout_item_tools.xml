@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="model"
+            type="jemmy.calak.tooltracking.model.Tools" />
+
+        <variable
+            name="listener"
+            type="jemmy.calak.tooltracking.ui.tools.ListToolsViewModel" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/padding_4"
+        android:onClick="@{(v)->listener.navigateToDetailTool(v, model)}">
+
+        <ImageView
+            android:id="@+id/imageTools"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            app:imageUrl="@{model.imageUri}"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_grey_radius_6"
+            android:padding="@dimen/padding_4"
+            android:text="@string/borrowed"
+            android:visibility="@{model.quantityBorrowed > 0 ? View.VISIBLE: View.GONE}"
+            app:layout_constraintRight_toRightOf="@+id/imageTools"
+            app:layout_constraintTop_toTopOf="@+id/imageTools" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/padding_10"
+            android:gravity="center"
+            android:text="@{model.nameTool}"
+            app:layout_constraintTop_toBottomOf="@+id/imageTools" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

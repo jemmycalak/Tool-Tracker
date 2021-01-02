@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">ToolTracking</string>
+    <string name="title_tools">Tools</string>
+    <string name="title_user">Friends</string>
+    <string name="title_transaction">Transaction</string>
+    <string name="borrowed">Borrowed</string>
+    <string name="lend">Lend Tool</string>
+    <string name="lend_to">Lend to...</string>
+    <string name="value">Quantity</string>
+    <string name="borrower">Borrower</string>
+    <string name="ask_return_tool">Return the tool ?</string>
+    <string name="alert">Alert</string>
+    <string name="no">NO</string>
+    <string name="yes">YES</string>
+</resources>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright (c) 12 - 2020.
+  ~ github: https://github.com/jemmycalak
+  ~ email: jemmy.sapta14@gmail.com
+  -->
+
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="model"
+            type="jemmy.calak.tooltracking.model.TransactionModel" />
+
+        <variable
+            name="tag"
+            type="String" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/padding_10">
+
+        <ImageView
+            android:id="@+id/imageBorrower"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            app:imageUrl="@{tag.length() > 0 ? model.tool.imageUri : model.user.imageUrl}"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/nameBorrower"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{`Name: `+model.user.name}"
+            app:layout_constraintLeft_toRightOf="@+id/imageBorrower"
+            app:layout_constraintTop_toTopOf="@+id/imageBorrower" />
+
+        <TextView
+            android:id="@+id/toolsBorrower"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/padding_10"
+            android:text="@{`Tool Name: `+model.tool.nameTool}"
+            app:layout_constraintLeft_toRightOf="@+id/imageBorrower"
+            app:layout_constraintTop_toBottomOf="@+id/nameBorrower" />
+
+        <TextView
+            android:id="@+id/quantityBorrower"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/padding_10"
+            android:text="@{`Quantity: `+model.borrowed.value}"
+            app:layout_constraintLeft_toRightOf="@+id/imageBorrower"
+            app:layout_constraintTop_toBottomOf="@+id/toolsBorrower" />
+        <TextView
+            android:id="@+id/statusBorrower"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/padding_10"
+            android:textStyle="bold"
+            android:text="@{`Status: `+model.borrowed.status}"
+            app:layout_constraintLeft_toRightOf="@+id/imageBorrower"
+            app:layout_constraintTop_toBottomOf="@+id/quantityBorrower" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
